@@ -1,14 +1,13 @@
 # shinji-base
 ---
+---
 title: "Untitled"
 author: "Shinji Yamamoto"
 date: "2022-11-04"
 output: word_document
 ---
 
-
-### elastic net
-# データの読み込み
+データの読み込み   
 ```{r}
 RPj <- read.csv("R_Pj.csv",row.names = 1)
 RP <- read.csv("R_P.csv",row.names = 1)
@@ -16,7 +15,7 @@ PPj <- read.csv("Pj_P.csv",row.names = 1)
 library(glmnet)
 library(caret)
 ```
-# RPJ 20品詞のelastic model      
+RPJ 20品詞のelastic model
 ```{r}
 m <- round(nrow(RPj)/3)
 set.seed(1)
@@ -42,7 +41,8 @@ elnet_coef.1 <- elnet_coef[sort.list(elnet_coef[,1]),]
 elnet_coef.1
 barplot(elnet_coef.1,horiz=TRUE,las=2,col = c(rep("green4",8),rep("turquoise",12)),cex.axis = 0.7,cex.names = 0.35,xlab = "緑＝その他　青＝プロレタリア児童文学")
 ```
-#RP 20品詞 elastic model
+
+RP 20品詞 elastic model
 ```{r}
 m1 <- round(nrow(RP)/3)
 set.seed(0)
@@ -67,9 +67,9 @@ elnet_coef2.3 <- elnet_coef1[sort.list(elnet_coef1[,1]),]
 elnet_coef2.3
 barplot(elnet_coef2.3,horiz=TRUE,las=2,col = c(rep("green4",9),rep("pink",11)),cex.axis = 0.7,cex.names = 0.35,xlab = "緑＝その他　桃＝プロレタリア文学")
 ```
-# PPJ 20品詞 lasso
+PPJ 20品詞 elastic model
 ```{r}
-#PPj
+
 m2 <- round(nrow(PPj)/3)
 set.seed(3)
 sp2 <- sample(1:nrow(PPj),m2)
@@ -95,7 +95,7 @@ elnet_coef2.2
 barplot(elnet_coef2.2,horiz=TRUE,las=2,col = c(rep("turquoise",8),rep("pink",12)),cex.axis = 0.7,cex.names = 0.35,xlab = "桃＝プロレタリア文学　青＝プロレタリア児童文学")
 
 ```
-# PPJ 感動詞　elastic model PJ=0 P=1
+PPJ 感動詞　elastic model 
 ```{r}
 
 ppj <- read.csv("P_Pjkando.csv",row.names = 1)
@@ -127,7 +127,7 @@ el4c2 <- elnet4.coef[55:81]
 el4c2
 barplot(el4c,horiz = TRUE,las=2,col=c(rep("turquoise",5),rep("pink",10)),cex.axis = 0.7,cex.names = 0.35,xlab = "桃＝プロレタリア文学　青＝プロレタリア児童文学")
 ```
-# PPJ 感嘆符のelasticnet回帰
+PPJ 感嘆符のelasticelastic  model
 
 ```{r}
 P_PJ_kan1 <- read.csv("P_PJ.kantan_cutoff0.csv",row.names = 1)
@@ -153,7 +153,7 @@ rownames(elnet_coef)
 elnet_coef.1 <- elnet_coef[sort.list(elnet_coef[,1]),]
 barplot(elnet_coef.1)
 ```
-# Word cloud
+Word cloud
 ```{r}
 P_wordcloud <- read.csv("P_wordcloud.csv",row.names = 1)
 PJ_wordcloud <- read.csv("PJ_wordcloud.csv",row.names = 1)
@@ -170,5 +170,9 @@ commonality.cloud(PJ_wordcloud, max.words=500, colors=brewer.pal(8, "Dark2"),mai
 commonality.cloud(PJM_wordcloud, max.words=500, colors=brewer.pal(8, "Dark2"),main="プロレタリア児童文学")　#名詞
 
 commonality.cloud(R_wordcloud, max.words=500, colors=brewer.pal(8, "Dark2"),main="その他作品")
+
+
+
+```
 
 ```
