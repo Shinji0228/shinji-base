@@ -47,7 +47,7 @@ elnet_coef <- predict(elnet$finalModel, type = "coefficients", s = elnet$bestTun
 elnet_coef.1 <- elnet_coef[sort.list(elnet_coef[,1]),]　　　　　　　　　　　　　　　　　　　　　特徴品詞を重要な順に並び替え　　　　　　　　　　　　　　　　　　　
 elnet_coef.1　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　結果の確認
 barplot(elnet_coef.1,horiz=TRUE,las=2,col = c(rep("green4",8),rep("turquoise",12)),cex.axis = 0.7,cex.names = 0.35,xlab = "緑＝その他　青＝プロレタリア児童文学")　　　　　　　　　　　　　　　　　　　　　　　　　
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　特徴品詞の重要度を棒グラフとし図示
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　特徴品詞の重要度を棒グラフとし図示
 ```
 
 RP 20品詞 elastic net回帰分析　　データが変わっただけです。
@@ -107,6 +107,8 @@ barplot(elnet_coef2.2,horiz=TRUE,las=2,col = c(rep("turquoise",8),rep("pink",12)
 次は特徴語を抽出します。
 得られた特徴品詞を使い、別のソフトでデータを加工し読み込みます。
 
+ですが、行っていることは特徴品詞の抽出とほとんど同じです。
+
 特徴語を抽出するためのデータの読み込み
 ```{r}
 P <- read.csv("P_Pjrandom_hirakann.csv",row.names = 1) プロレタリアとプロレタリア児童文学作品を組み合わせたデータです。
@@ -116,8 +118,8 @@ R <- read.csv("P_Rrandom.csv",row.names = 1)
 PJ <- read.csv("R_PJ_elastic.csv",row.names = 1)
 ```
 ```
-PPJ 特徴品詞5の単語 elastic net回帰分析　　　　　　プロレタリア文学とプロレタリア児童文学作品の特徴語を抽出しています。
-　　　　　　　　　　　　　　　　　　　　　　　　　　特徴品詞の抽出とほとんど同じです。
+PPJ 特徴品詞5の単語 elastic net回帰分析　　　　　　
+プロレタリア文学とプロレタリア児童文学作品の特徴語を抽出しています。
 　　　　　　　　　　　　　　　　　　　　　　　　　　
 ```{r}
 dim(P)
@@ -148,7 +150,8 @@ dim(P)
 selnet_coef.1 <- elnet_coef.1[138:157]　　　　　　　　　　　　　　　　　　　図示できないほどデータ数が多いため、特に重要となる語を指定
 selnet_coef.1　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　指定した語を確認
 
-barplot(selnet_coef.1,las=2,horiz = T,col = c(rep("pink",14),rep("turquoise",15)),cex.axis = 0.7,cex.names = 0.2,xlab = "青＝プロレタリア文学　桃＝プロレタリア児童文学")　　　　　　　　　　　　　　　　　　　　　　　　　　　　　指定した語の重要度を棒グラフにし図示
+barplot(selnet_coef.1,las=2,horiz = T,col = c(rep("pink",14),rep("turquoise",15)),cex.axis = 0.7,cex.names = 0.2,xlab = "青＝プロレタリア文学　桃＝プロレタリア児童文学")　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+指定した語の重要度を棒グラフにし図示
 
 ```
 PR 5品詞　elastic net回帰分析　　　　データが変わっただけです。
